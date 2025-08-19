@@ -1,111 +1,33 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
-import Layout from "../views/Layout.vue";
+// 导入router所需的方法
+import { createRouter, createWebHistory } from 'vue-router'
+// 导入路由页面的配置
+import routes from './routes';
 
-Vue.use(VueRouter);
+// 路由参数配置
+const router = createRouter({
+    // 使用hash(createWebHashHistory)模式，(createWebHistory是HTML5历史模式，支持SEO)
+    history: createWebHistory(),
+    routes,
+    scrollBehavior(to, from, savedPosition) {
+        // 始终滚动到顶部
+        return { top: 0 };
+    }
+})
 
-const routes = [
-  {
-    path: "/",
-    name: "Layout",
-    component: Layout,
-    children: [
-      {
-        path: "index",
-        name: "index",
-        alias: "/",
-        component: () => import("@/views/frontend/Index.vue"),
-        meta: { title: "前端常用" },
-      },
-      {
-        path: "frontend",
-        name: "frontend",
-        component: () => import("@/views/index/Index.vue"),
-        // component: () => import("@/views/frontend/Index.vue"),
-        // meta: { title: "前端常用" },
-      },
-      {
-        path: "aline",
-        name: "aline",
-        component: () => import("@/views/aline/Aline.vue"),
-        meta: { title: "常用正则" },
-      },
-      {
-        path: "anli",
-        name: "anli",
-        component: () => import("@/views/anli/Index.vue"),
-        meta: { title: "案例" },
-      },
-      {
-        path: "backend",
-        name: "backend",
-        component: () => import("@/views/backend/BackEnd.vue"),
-        meta: { title: "后端常用" },
-      },
-      {
-        path: "hot",
-        name: "hot",
-        component: () => import("@/views/hot/Hot.vue"),
-        meta: { title: "热点排行" },
-      },
-      {
-        path: "history",
-        name: "history",
-        component: () => import("@/views/history/History.vue"),
-        meta: { title: "更新日志" },
-      },
-      {
-        path: "feedback",
-        name: "feedback",
-        component: () => import("@/views/feedback/Feedback.vue"),
-        meta: { title: "留言反馈" },
-      },
-      {
-        path: "about",
-        name: "about",
-        component: () => import("@/views/about/About.vue"),
-        meta: { title: "关于本站" },
-      },
-    ],
-  },
-  {
-    path: "/404",
-    component: () => import("@/views/404.vue"),
-  },
-  // vue 翻页时钟
-  {
-    path: "/test-clock-container",
-    component: () => import("@/views/anli/test-clock-container.vue"),
-  },
-  // 简单模拟时钟
-  {
-    path: "/clock",
-    component: () => import("@/views/anli/Clock.vue"),
-  },
-  // 淘宝买家秀
-  {
-    path: "/mjx",
-    component: () => import("@/views/hide/Mjx.vue"),
-  },
-  // 抖音美女
-  {
-    path: "/mnsp",
-    component: () => import("@/views/hide/Mnsp.vue"),
-  },
-  // ChatGpt | phind
-  {
-    path: "/phind",
-    component: () => import("@/views/phind/index.vue"),
-  },
-  // 404页面
-  //这个*匹配必须放在最后，将改路由配置放到所有路由的配置信息的最后，否则会其他路由path匹配造成影响。
-  { path: "*", redirect: "/404", hidden: true },
-];
+// 全局前置守卫，这里可以加入用户登录判断
+router.beforeEach((to, from, next) => {
+    // 继续前进 next()
+    // 返回 false 以取消导航
+    next()
+})
 
-const router = new VueRouter({
-  mode: "history",
-  base: process.env.BASE_URL,
-  routes,
-});
+// // 全局后置钩子，这里可以加入改变页面标题等操作
+router.afterEach((to, from) => {
+    const _title = to.meta.title
+    if (_title) {
+        window.document.title = _title
+    }
+})
 
-export default router;
+// 导出默认值
+export default router

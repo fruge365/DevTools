@@ -1,31 +1,34 @@
-# devtools
-## 工具箱 基于vue2发开,写的不好大佬轻点喷,欢迎指点
+# Vue 3 + Vite
 
-![Image text](./src/assets/v2.1.17-1.jpg)
+    模板源码，克隆直接使用
+    
+## 安装依赖
 
-![Image text](./src/assets/v2.1.17.png)
+    yarn
+
+ ## 运行
+
+    yarn dev
+
+ ## 打包
+
+    yarn build
+
+ ## 技术栈
+
+    Vue3 + Vite + Js + Pinia + Navie UI
 
 
-## Project setup
 
-```
-npm install
-```
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+Navie UI 组件：[https://www.naiveui.com/zh-CN/light/components/button](https://www.naiveui.com/zh-CN/light/components/button)
 
-### Compiles and minifies for production
-```
-npm run build
-```
+Vite 官方中文文档：[https://cn.vitejs.dev/guide/](https://cn.vitejs.dev/guide/)
 
-### Lints and fixes files
-```
-npm run lint
-```
+Remix Icon：[https://remixicon.com/](https://remixicon.com/)
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+  ## 功能
+
+- [x] Pinia持久化
