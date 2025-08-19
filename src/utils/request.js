@@ -9,7 +9,7 @@ const request = axios.create({
   // .env 全局默认配置文件，不论什么环境都会加载合并
   // .env.development 开发环境下的配置文件  cnpm run serve
   // .env.production 生产环境下的配置文件   cnpm run build
-  baseURL: process.env.VUE_APP_URL,
+  baseURL: process.env.VUE_APP_BAIDU_HOT_API,
   timeout: 5000,
   headers: {
     // 意味着：后期post请求 body: '参数名=数据&...&参数名=数据

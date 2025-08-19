@@ -29,7 +29,6 @@ export default {};
 <style lang="scss" scoped>
 .footer {
   z-index: 2;
-  // height: 140px;
   flex-direction: column;
   font-size: 14px;
   display: flex;

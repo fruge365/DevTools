@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="viewport">
   <link rel="icon" href="<%= BASE_URL %>favicon.ico">
   <!-- 音乐 -->
   <!--  APlayer -->
@@ -12,130 +12,128 @@
   <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
   <!-- MetingJS -->
   <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-
-  <!-- 音乐 -->
+  <!-- 阿里字体库 -->
+  <link rel="stylesheet" href="//at.alicdn.com/t/c/font_3851303_k04cs90fxrm.css">
   <title>
     <%= htmlWebpackPlugin.options.title %>
   </title>
-  <meta name="viewport">
-  <style media="screen" type="text/css">
-    html {
-      scroll-padding-top: 140px;
-
-    }
-
-    .loading {
-      position: absolute;
-      height: 100%;
-      width: 100%;
-      background-color: #000;
+  <style type="text/css">
+    .loader {
+      background: #000;
+      background: radial-gradient(#222, #000);
       bottom: 0;
       left: 0;
+      overflow: hidden;
+      position: fixed;
       right: 0;
       top: 0;
-      z-index: 9999;
-      ;
-      opacity: 0.8;
+      z-index: 99999;
     }
 
-    .loading.fixed {
-      position: fixed;
+    .loader-inner {
+      bottom: 0;
+      height: 60px;
+      left: 0;
+      margin: auto;
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 100px;
     }
 
-    .loading:before {
-      content: '';
-      background-color: rgba(0, 0, 0, 0);
-      border: 5px solid rgba(0, 183, 229, 0.9);
-      opacity: .9;
-      border-right: 5px solid rgba(0, 0, 0, 0);
-      border-left: 5px solid rgba(0, 0, 0, 0);
-      border-radius: 50px;
-      box-shadow: 0 0 35px #2187e7;
-      width: 50px;
+    .loader-line-wrap {
+      animation: spin 2000ms cubic-bezier(.175, .885, .32, 1.275) infinite;
+      box-sizing: border-box;
       height: 50px;
-      -moz-animation: spinPulse 1s infinite ease-in-out;
-      -webkit-animation: spinPulse 1s infinite linear;
-      margin: -25px 0 0 -25px;
+      left: 0;
+      overflow: hidden;
       position: absolute;
-      top: 50%;
-      left: 50%;
+      top: 0;
+      transform-origin: 50% 100%;
+      width: 100px;
     }
 
-    .loading:after {
-      content: '';
-      background-color: rgba(0, 0, 0, 0);
-      border: 5px solid rgba(0, 183, 229, 0.9);
-      opacity: .9;
-      border-left: 5px solid rgba(0, 0, 0, 0);
-      border-right: 5px solid rgba(0, 0, 0, 0);
-      border-radius: 50px;
-      box-shadow: 0 0 15px #2187e7;
-      width: 30px;
-      height: 30px;
-      -moz-animation: spinoffPulse 1s infinite linear;
-      -webkit-animation: spinoffPulse 1s infinite linear;
-      margin: -15px 0 0 -15px;
+    .loader-line {
+      border: 4px solid transparent;
+      border-radius: 100%;
+      box-sizing: border-box;
+      height: 100px;
+      left: 0;
+      margin: 0 auto;
       position: absolute;
-      top: 50%;
-      left: 50%;
+      right: 0;
+      top: 0;
+      width: 100px;
     }
 
-    @-moz-keyframes spinPulse {
-      0% {
-        -moz-transform: rotate(160deg);
-        opacity: 0;
-        box-shadow: 0 0 1px #2187e7;
-      }
+    .loader-line-wrap:nth-child(1) {
+      animation-delay: -50ms;
+    }
 
-      50% {
-        -moz-transform: rotate(145deg);
-        opacity: 1;
+    .loader-line-wrap:nth-child(2) {
+      animation-delay: -100ms;
+    }
+
+    .loader-line-wrap:nth-child(3) {
+      animation-delay: -150ms;
+    }
+
+    .loader-line-wrap:nth-child(4) {
+      animation-delay: -200ms;
+    }
+
+    .loader-line-wrap:nth-child(5) {
+      animation-delay: -250ms;
+    }
+
+    .loader-line-wrap:nth-child(1) .loader-line {
+      border-color: hsl(0, 80%, 60%);
+      height: 90px;
+      width: 90px;
+      top: 7px;
+    }
+
+    .loader-line-wrap:nth-child(2) .loader-line {
+      border-color: hsl(60, 80%, 60%);
+      height: 76px;
+      width: 76px;
+      top: 14px;
+    }
+
+    .loader-line-wrap:nth-child(3) .loader-line {
+      border-color: hsl(120, 80%, 60%);
+      height: 62px;
+      width: 62px;
+      top: 21px;
+    }
+
+    .loader-line-wrap:nth-child(4) .loader-line {
+      border-color: hsl(180, 80%, 60%);
+      height: 48px;
+      width: 48px;
+      top: 28px;
+    }
+
+    .loader-line-wrap:nth-child(5) .loader-line {
+      border-color: hsl(240, 80%, 60%);
+      height: 34px;
+      width: 34px;
+      top: 35px;
+    }
+
+    @keyframes spin {
+
+      0%,
+      15% {
+        transform: rotate(0);
       }
 
       100% {
-        -moz-transform: rotate(-320deg);
-        opacity: 0;
+        transform: rotate(360deg);
       }
     }
 
-    @-moz-keyframes spinoffPulse {
-      0% {
-        -moz-transform: rotate(0deg);
-      }
-
-      100% {
-        -moz-transform: rotate(360deg);
-      }
-    }
-
-    @-webkit-keyframes spinPulse {
-      0% {
-        -webkit-transform: rotate(160deg);
-        opacity: 0;
-        box-shadow: 0 0 1px #2187e7;
-      }
-
-      50% {
-        -webkit-transform: rotate(145deg);
-        opacity: 1;
-      }
-
-      100% {
-        -webkit-transform: rotate(-320deg);
-        opacity: 0;
-      }
-    }
-
-    @-webkit-keyframes spinoffPulse {
-      0% {
-        -webkit-transform: rotate(0deg);
-      }
-
-      100% {
-        -webkit-transform: rotate(360deg);
-      }
-    }
-
+    /* 滑块样式修改 */
     body::-webkit-scrollbar {
       width: 10px;
       height: 10px;
@@ -181,11 +179,29 @@
     <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
         Please enable it to continue.</strong>
   </noscript>
-  <div id="appLoading">
-    <div class='loading'></div>
+
+  <div id="app">
+    <div class="loader">
+      <div class="loader-inner">
+        <div class="loader-line-wrap">
+          <div class="loader-line"></div>
+        </div>
+        <div class="loader-line-wrap">
+          <div class="loader-line"></div>
+        </div>
+        <div class="loader-line-wrap">
+          <div class="loader-line"></div>
+        </div>
+        <div class="loader-line-wrap">
+          <div class="loader-line"></div>
+        </div>
+        <div class="loader-line-wrap">
+          <div class="loader-line"></div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div id="app" style="display: none">
-  </div>
+  <!-- built files will be auto injected -->
 </body>
 
 </html>
