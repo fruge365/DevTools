@@ -1,7 +1,23 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import router from './router' // 引入路由
-import "@/assets/sass/main.css" // 引入全局样式
-import pinia from './pinia';  // 引入模块化、持久化的 pinia 配置
+import router from './router'
+import pinia from './pinia'
 
-createApp(App).use(router).use(pinia).mount('#app')
+// Naive UI
+import naive from 'naive-ui'
+// 通用字体
+import 'vfonts/Lato.css'
+// 等宽字体
+import 'vfonts/FiraCode.css'
+
+// 样式
+import '@/assets/sass/main.css'
+import '@/assets/sass/animations.scss'
+
+const app = createApp(App)
+
+app.use(router)
+app.use(pinia)
+app.use(naive)
+
+app.mount('#app')

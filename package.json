@@ -4,11 +4,12 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --open  --host --strictPort",
+    "dev": "vite --open  --host",
     "build": "vite build",
     "preview": "vite preview --open"
   },
   "dependencies": {
+    "@vicons/ionicons5": "^0.13.0",
     "axios": "^1.7.7",
     "naive-ui": "^2.40.1",
     "pinia": "^2.2.2",

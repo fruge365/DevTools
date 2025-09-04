@@ -35,7 +35,7 @@ export default defineConfig(({ command, mode }) => {
       extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json'],
     },
     server: {
-      port: 80, // 修改开发服务器端口为 80
+      port: 8080, // 修改开发服务器端口为 8080
       hmr: true, // 热模块替换
       proxy: {
         '/dev-api': {
